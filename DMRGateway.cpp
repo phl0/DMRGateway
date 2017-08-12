@@ -830,14 +830,10 @@ int CDMRGateway::run()
 				m_xlxNetwork1->writePosition(buffer, length);
 			if (m_xlxNetwork2 != NULL)
 				m_xlxNetwork2->writePosition(buffer, length);
-			if (m_conf.getDMRNetwork1SendPosition()) {
-				if (m_dmrNetwork1 != NULL)
-					m_dmrNetwork1->writePosition(buffer, length);
-			}
-			if (m_conf.getDMRNetwork2SendPosition()) {
-				if (m_dmrNetwork2 != NULL)
-					m_dmrNetwork2->writePosition(buffer, length);
-			}
+			if (m_dmrNetwork1 != NULL)
+				m_dmrNetwork1->writePosition(buffer, length);
+			if (m_dmrNetwork2 != NULL)
+				m_dmrNetwork2->writePosition(buffer, length);
 		}
 		ret = m_repeater->readTalkerAlias(buffer, length);
 		if (ret) {
