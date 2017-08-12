@@ -974,6 +974,7 @@ bool CDMRGateway::createDMRNetwork1()
 	std::string password = m_conf.getDMRNetwork1Password();
 	bool debug           = m_conf.getDMRNetwork1Debug();
 	m_dmr1Name           = m_conf.getDMRNetwork1Name();
+        bool propagateposition = m_conf.getDMRNetwork1PropagatePosition();
 
 	if (id == 0U)
 		id = m_repeater->getId();
@@ -987,6 +988,7 @@ bool CDMRGateway::createDMRNetwork1()
 		LogInfo("    Local: %u", local);
 	else
 		LogInfo("    Local: random");
+        LogInfo("    Propagate position: %s", propagateposition ? "Enabled" : "Disabled");
 
 	m_dmrNetwork1 = new CDMRNetwork(address, port, local, id, password, m_dmr1Name, debug);
 
@@ -1096,6 +1098,7 @@ bool CDMRGateway::createDMRNetwork2()
 	std::string password = m_conf.getDMRNetwork2Password();
 	bool debug           = m_conf.getDMRNetwork2Debug();
 	m_dmr2Name           = m_conf.getDMRNetwork2Name();
+        bool propagateposition = m_conf.getDMRNetwork2PropagatePosition();
 
 	if (id == 0U)
 		id = m_repeater->getId();
@@ -1109,6 +1112,7 @@ bool CDMRGateway::createDMRNetwork2()
 		LogInfo("    Local: %u", local);
 	else
 		LogInfo("    Local: random");
+        LogInfo("    Propagate position: %s", propagateposition ? "Enabled" : "Disabled");
 
 	m_dmrNetwork2 = new CDMRNetwork(address, port, local, id, password, m_dmr2Name, debug);
 
