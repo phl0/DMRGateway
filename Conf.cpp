@@ -62,7 +62,7 @@ m_dmrNetwork1Port(0U),
 m_dmrNetwork1Local(0U),
 m_dmrNetwork1Password(),
 m_dmrNetwork1Options(),
-m_dmrNetwork1PropagatePosition(true),
+m_dmrNetwork1SendPosition(true),
 m_dmrNetwork1Debug(false),
 m_dmrNetwork1TGRewrites(),
 m_dmrNetwork1PCRewrites(),
@@ -78,7 +78,7 @@ m_dmrNetwork2Port(0U),
 m_dmrNetwork2Local(0U),
 m_dmrNetwork2Password(),
 m_dmrNetwork2Options(),
-m_dmrNetwork2PropagatePosition(true),
+m_dmrNetwork2SendPosition(true),
 m_dmrNetwork2Debug(false),
 m_dmrNetwork2TGRewrites(),
 m_dmrNetwork2PCRewrites(),
@@ -273,8 +273,8 @@ bool CConf::read()
 				m_dmrNetwork1Password = value;
 			else if (::strcmp(key, "Options") == 0)
 				m_dmrNetwork1Options = value;
-			else if (::strcmp(key, "PropagatePosition") == 0)
-				m_dmrNetwork1PropagatePosition = ::atoi(value) == 1;
+			else if (::strcmp(key, "SendPosition") == 0)
+				m_dmrNetwork1SendPosition = ::atoi(value) == 1;
 			else if (::strcmp(key, "Debug") == 0)
 				m_dmrNetwork1Debug = ::atoi(value) == 1;
 			else if (::strcmp(key, "TGRewrite") == 0) {
@@ -359,8 +359,8 @@ bool CConf::read()
 				m_dmrNetwork2Password = value;
 			else if (::strcmp(key, "Options") == 0)
 				m_dmrNetwork2Options = value;
-			else if (::strcmp(key, "PropagatePosition") == 0)
-				m_dmrNetwork2PropagatePosition = ::atoi(value) == 1;
+			else if (::strcmp(key, "SendPosition") == 0)
+				m_dmrNetwork2SendPosition = ::atoi(value) == 1;
 			else if (::strcmp(key, "Debug") == 0)
 				m_dmrNetwork2Debug = ::atoi(value) == 1;
 			else if (::strcmp(key, "TGRewrite") == 0) {
@@ -700,9 +700,9 @@ std::string CConf::getDMRNetwork1Options() const
 	return m_dmrNetwork1Options;
 }
 
-bool CConf::getDMRNetwork1PropagatePosition() const
+bool CConf::getDMRNetwork1SendPosition() const
 {
-	return m_dmrNetwork1PropagatePosition;
+	return m_dmrNetwork1SendPosition;
 }
 
 bool CConf::getDMRNetwork1Debug() const
@@ -783,9 +783,9 @@ std::string CConf::getDMRNetwork2Options() const
 	return m_dmrNetwork2Options;
 }
 
-bool CConf::getDMRNetwork2PropagatePosition() const
+bool CConf::getDMRNetwork2SendPosition() const
 {
-	return m_dmrNetwork2PropagatePosition;
+	return m_dmrNetwork2SendPosition;
 }
 
 bool CConf::getDMRNetwork2Debug() const

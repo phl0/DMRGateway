@@ -830,11 +830,11 @@ int CDMRGateway::run()
 				m_xlxNetwork1->writePosition(buffer, length);
 			if (m_xlxNetwork2 != NULL)
 				m_xlxNetwork2->writePosition(buffer, length);
-			if (m_conf.getDMRNetwork1PropagatePosition()) {
+			if (m_conf.getDMRNetwork1SendPosition()) {
 				if (m_dmrNetwork1 != NULL)
 					m_dmrNetwork1->writePosition(buffer, length);
 			}
-			if (m_conf.getDMRNetwork2PropagatePosition()) {
+			if (m_conf.getDMRNetwork2SendPosition()) {
 				if (m_dmrNetwork2 != NULL)
 					m_dmrNetwork2->writePosition(buffer, length);
 			}
@@ -974,7 +974,7 @@ bool CDMRGateway::createDMRNetwork1()
 	std::string password = m_conf.getDMRNetwork1Password();
 	bool debug           = m_conf.getDMRNetwork1Debug();
 	m_dmr1Name           = m_conf.getDMRNetwork1Name();
-        bool propagateposition = m_conf.getDMRNetwork1PropagatePosition();
+	bool sendposition    = m_conf.getDMRNetwork1SendPosition();
 
 	if (id == 0U)
 		id = m_repeater->getId();
@@ -988,7 +988,7 @@ bool CDMRGateway::createDMRNetwork1()
 		LogInfo("    Local: %u", local);
 	else
 		LogInfo("    Local: random");
-        LogInfo("    Propagate position: %s", propagateposition ? "Enabled" : "Disabled");
+	LogInfo("    Send position: %s", sendposition ? "Enabled" : "Disabled");
 
 	m_dmrNetwork1 = new CDMRNetwork(address, port, local, id, password, m_dmr1Name, debug);
 
@@ -1098,7 +1098,7 @@ bool CDMRGateway::createDMRNetwork2()
 	std::string password = m_conf.getDMRNetwork2Password();
 	bool debug           = m_conf.getDMRNetwork2Debug();
 	m_dmr2Name           = m_conf.getDMRNetwork2Name();
-        bool propagateposition = m_conf.getDMRNetwork2PropagatePosition();
+	bool sendposition    = m_conf.getDMRNetwork2SendPosition();
 
 	if (id == 0U)
 		id = m_repeater->getId();
@@ -1112,7 +1112,7 @@ bool CDMRGateway::createDMRNetwork2()
 		LogInfo("    Local: %u", local);
 	else
 		LogInfo("    Local: random");
-        LogInfo("    Propagate position: %s", propagateposition ? "Enabled" : "Disabled");
+	LogInfo("    Send position: %s", sendposition ? "Enabled" : "Disabled");
 
 	m_dmrNetwork2 = new CDMRNetwork(address, port, local, id, password, m_dmr2Name, debug);
 
