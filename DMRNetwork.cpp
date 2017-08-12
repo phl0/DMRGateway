@@ -472,6 +472,7 @@ bool CDMRNetwork::writeConfig()
 	::memcpy(buffer + 0U, "RPTC", 4U);
 	::memcpy(buffer + 4U, m_id, 4U);
 	::memcpy(buffer + 8U, m_configData, m_configLen);
+        ::memcpy(buffer + 38U, "00.0000000.000000000", 20U);
 
 	return write((unsigned char*)buffer, m_configLen + 8U);
 }
