@@ -986,7 +986,7 @@ bool CDMRGateway::createDMRNetwork1()
 		LogInfo("    Local: random");
 	LogInfo("    Send position: %s", sendposition ? "Enabled" : "Disabled");
 
-	m_dmrNetwork1 = new CDMRNetwork(address, port, local, id, password, m_dmr1Name, debug);
+	m_dmrNetwork1 = new CDMRNetwork(address, port, local, id, password, m_dmr1Name, sendposition, debug);
 
 	std::string options = m_conf.getDMRNetwork1Options();
 	if (options.empty())
@@ -1110,7 +1110,7 @@ bool CDMRGateway::createDMRNetwork2()
 		LogInfo("    Local: random");
 	LogInfo("    Send position: %s", sendposition ? "Enabled" : "Disabled");
 
-	m_dmrNetwork2 = new CDMRNetwork(address, port, local, id, password, m_dmr2Name, debug);
+	m_dmrNetwork2 = new CDMRNetwork(address, port, local, id, password, m_dmr2Name, sendposition, debug);
 
 	std::string options = m_conf.getDMRNetwork2Options();
 	if (options.empty())
@@ -1232,7 +1232,7 @@ bool CDMRGateway::createXLXNetwork1()
 	else
 		LogInfo("    Local: random");
 
-	m_xlxNetwork1 = new CDMRNetwork(address, port, local, m_xlx1Id, password, m_xlx1Name, debug);
+	m_xlxNetwork1 = new CDMRNetwork(address, port, local, m_xlx1Id, password, m_xlx1Name, 1, debug);
 
 	std::string options = m_conf.getXLXNetwork1Options();
 	if (!options.empty()) {
@@ -1302,7 +1302,7 @@ bool CDMRGateway::createXLXNetwork2()
 	else
 		LogInfo("    Local: random");
 
-	m_xlxNetwork2 = new CDMRNetwork(address, port, local, m_xlx2Id, password, m_xlx2Name, debug);
+	m_xlxNetwork2 = new CDMRNetwork(address, port, local, m_xlx2Id, password, m_xlx2Name, 1 , debug);
 
 	std::string options = m_conf.getXLXNetwork2Options();
 	if (!options.empty()) {

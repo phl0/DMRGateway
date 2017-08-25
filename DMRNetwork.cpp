@@ -31,12 +31,13 @@ const unsigned int BUFFER_LENGTH = 500U;
 const unsigned int HOMEBREW_DATA_PACKET_LENGTH = 55U;
 
 
-CDMRNetwork::CDMRNetwork(const std::string& address, unsigned int port, unsigned int local, unsigned int id, const std::string& password, const std::string& name, bool debug) :
+CDMRNetwork::CDMRNetwork(const std::string& address, unsigned int port, unsigned int local, unsigned int id, const std::string& password, const std::string& name, bool sendpos, bool debug) :
 m_address(),
 m_port(port),
 m_id(NULL),
 m_password(password),
 m_name(name),
+m_sendpos(sendpos),
 m_debug(debug),
 m_socket(local),
 m_status(WAITING_CONNECT),
@@ -472,7 +473,9 @@ bool CDMRNetwork::writeConfig()
 	::memcpy(buffer + 0U, "RPTC", 4U);
 	::memcpy(buffer + 4U, m_id, 4U);
 	::memcpy(buffer + 8U, m_configData, m_configLen);
-        ::memcpy(buffer + 38U, "00.0000000.000000000", 20U);
+
+	if (m_sendpos)
+		::memcpy(buffer + 38U, "00.0000000.000000000", 20U);
 
 	return write((unsigned char*)buffer, m_configLen + 8U);
 }
